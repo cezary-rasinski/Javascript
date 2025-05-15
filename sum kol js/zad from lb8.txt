@@ -1,0 +1,112 @@
+Paradygmaty
+
+zad9:
+
+function decodeRoman(txt) {
+  const romanMap = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+  };
+  
+  let rev = txt.split('').reverse().join('');
+  let sum = 0;
+  let prev = 0;
+  
+  for (let ch of rev){
+    let value = romanMap[ch];
+    
+    if (value < prev){
+      sum -= value;
+    } else {
+      sum += value;
+    }
+    
+    prev = value;
+  }     
+  return sum;
+}
+let roman = "MMMDCCCLXXVI"
+console.log(decodeRoman(roman));
+
+zad10:
+
+function decode(arr, dir) {
+  
+	let result = "";
+  	let Ipos = 0;
+  	let Jpos = 0;
+  	
+  	const Imap = {
+      'd' : 1,
+      'u' : -1
+    };
+  	const Jmap = {
+      'r' : 1,
+      'l' : -1
+    };
+  
+  	let c = String.fromCharCode(arr[Ipos][Jpos]);
+    result += c;
+  
+  	for (let ch of dir){
+      if (ch === 'r' || ch === 'l'){
+        Jpos += Jmap[ch];
+        let c = String.fromCharCode(arr[Ipos][Jpos]);
+        result += c;
+      } else {
+        Ipos += Imap[ch];
+        let c = String.fromCharCode(arr[Ipos][Jpos]);
+        result += c;
+      }
+    }
+  	return result;
+}
+
+const arr = [
+  [66, 97, 114, 100, 4, 2, 110, 11, 1, 6, 20],
+  [99, 3, 10, 122, 76, 101, 111, 3, 32, 100, 0],
+  [6, 22, 1, 111, 32, 10, 110, 7, 97, 97, 67],
+  [60, 97, 116, 32, 100, 23, 97, 114, 100, 32, 34],
+  [2, 106, 15, 6, 111, 56, 80, 20, 10, 86, 10],
+  [20, 110, 121, 32, 107, 55, 50, 99, 110, 105, 8],
+  [12, 9, 22, 102, 66, 100, 12, 105, 50, 76, 110],
+  [42, 81, 123, 92, 26, 98, 20, 1, 20, 11, 10]
+];
+const str = "rrrdddllddrrruuuurrddrruurddddlld";
+let s = decode(arr, str);
+console.log(s);
+
+zad11:
+
+function lastWordLength(string){
+  string = string.trim().split(' ').reverse();
+  return string[0].length;
+}
+
+let s = "   fly me   to   the moon  "
+let len = lastWordLength(s)
+console.log(len);
+
+
+zad12:
+
+function steps(n) {
+	if (n == 1){return 1;}
+  	if (n == 2){return 2;}
+  
+  	let oneBefore = 2;
+  	let twoBefore = 1;
+  	let allWays = 0;
+  	for (let i = 3; i <= n; i++){
+      allWays = (oneBefore + twoBefore);
+      twoBefore = oneBefore;
+      oneBefore = allWays;
+    }
+  	return allWays;
+}
+console.log(steps(6));

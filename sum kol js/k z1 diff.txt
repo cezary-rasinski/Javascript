@@ -1,0 +1,21 @@
+function findPairsWithSum(numbers, targetSum) {
+  let pairsArray = [];
+  let seenNumbers = new Set();
+
+  for (let i = 0; i < numbers.length; i++) {
+    let complement = targetSum - numbers[i];
+
+    if (seenNumbers.has(complement)) {
+      pairsArray.push([complement, numbers[i]]);
+    }
+
+    seenNumbers.add(numbers[i]);
+  }
+
+  return pairsArray;
+}
+
+const targetSum = 6;
+let arr = [1, 5, 3, 3, 2, 4, 6];
+
+console.log(findPairsWithSum(arr, targetSum));

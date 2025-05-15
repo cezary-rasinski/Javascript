@@ -1,0 +1,36 @@
+class Book {
+  constructor() {
+    this.users = [];
+  }
+  addUser(name, age, phone) {
+    this.users.push({
+      name,
+      age,
+      phone
+    });
+  }
+  showUsers() {
+    for (let user of this.users) {
+      console.log(user);
+    }
+  }
+  findByName(name) {
+    let u = consthis.users.find((user) => user.name === name);
+    console.log(u);
+  }
+  findByPhone(phone) {
+    let p = this.users.find((user) => user.phone === phone);
+    console.log(p);
+  }
+  getCount() {
+    console.log(this.users.len());
+  }
+}
+
+const book = new Book();
+
+book.addUser('adam', 19, '123');
+book.addUser('anna', 29, '124');
+
+book.showUsers();
+book.findByPhone("124");
